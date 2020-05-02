@@ -1,0 +1,38 @@
+{% extends 'layout.html' %}
+{% block title %} Contact {% endblock %}
+{% block body %}
+<link rel="stylesheet" href="CSS/contact.css"/>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<div id="contactcontainer">
+<div class="container">
+  <div style="text-align:center">
+    <h2>Nous contacter</h2>
+    <p>Vous rencontrez une difficulté ? Contactez nous !</p>
+  </div>
+  <div class="row">
+    <div class="column">
+      <img src="./img/mail.jpg" style="width:100%" class="">
+    </div>
+    <div class="column">
+      <form action="?page=mail" method="POST">
+        <label for="fname">Prénom</label>
+        <input type="text" id="fname" name="firstname" placeholder="Votre Prénom">
+        <label for="lname">Nom</label>
+        <input type="text" id="lname" name="lastname" placeholder="Votre nom">
+        <label for="sujet">Sujet</label>
+        <input type="text" id="sujet" name="sujet" placeholder="L'objet de votre message">
+        <label for="emailAddress">Email</label>
+        <input id="emailAddress" type="email" name="email" placeholder="Votre email">
+        <label for="subject">Message</label>
+        <textarea id="subject" name="subject" placeholder="Votre message .." style="height:170px"></textarea>
+        <input type="submit" value="Envoyer" name="mailform"/>
+      </form>
+    </div>
+  </div>
+</div>
+</div>
+
+
+
+
+{% endblock %}

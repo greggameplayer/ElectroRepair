@@ -1,0 +1,16 @@
+{% extends 'layout.html' %}
+{% block title %}
+Mon Compte
+{% endblock %}
+{% block body %}
+<ul class="nav nav-tabs">
+    <li class="nav-item">
+        <a class="nav-link active" href="#">Mes rendez-vous</a>
+    </li>
+</ul>
+<div id="contentmyaccount">
+    {% if CalendarId is defined %}
+    <iframe src="https://calendar.google.com/calendar/embed?src={{ CalendarId }}&ctz=Europe%2FParis" style="border: 0" frameborder="0" scrolling="no"></iframe>
+    {% endif %}
+</div>
+{% endblock %}

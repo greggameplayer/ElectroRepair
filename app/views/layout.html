@@ -1,0 +1,27 @@
+
+<!DOCTYPE html>
+<html>
+    <head>    
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" defer></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous" defer></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" defer>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.js" crossorigin="anonymous" defer></script>
+        <script src="JS/all.js" defer></script>
+        <link rel="stylesheet" href="CSS/all.css"/>
+        <link rel="stylesheet" href="CSS/index.css"/>
+        <link rel="stylesheet" href="CSS/inscription.css"/>
+        <script src="JS/index.js" defer></script>
+
+        <title>{% block title %} {% endblock %}</title>
+    </head>
+    <body>
+        {% include 'header.html' %}
+
+        {% block body %}{% endblock %}
+
+        {%include 'footer.html'%}
+    
+    </body>
+</html>

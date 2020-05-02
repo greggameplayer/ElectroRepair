@@ -1,0 +1,8 @@
+{% extends 'layout.html' %}
+{% block title %}Annonce{% endblock %}
+{% block body %}
+    {% for annonce in Myannonce %}
+        {%include 'bonneAnnonce.html' with {'annonce': annonce} %}
+    {%endfor%} 
+
+{% endblock %}

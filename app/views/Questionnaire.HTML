@@ -1,0 +1,54 @@
+{% extends 'layout.html' %}
+{% block title %} Questionnaire {% endblock %}
+
+{% block body %}
+        <link rel="stylesheet" href="CSS/Questionnaire.css"/>
+    <body>
+        <div class="allwrapper">
+            <form action="?page=annonceQuestionnaire" class="radiogroup" method="POST">
+                <div class="text">Nous devons connaitre mieu votre problème avant de vous aidez, veuillez remplir le questionnaire si dessous:</div>
+                <div class="radiogroup">
+                    <div class="text">Quel est le type de l'appareil défaillant:</div>
+                    <div class="wrapper">
+                        <input class="state" type="radio" name="gendre1" id="telephone">
+                        <label class="label" for="telephone">
+                        <div class="indicator"></div>
+                        <span class="text">Téléphone</span>
+                        </label>
+                    </div>
+                    <div class="wrapper">
+                        <input class="state" type="radio" name="gendre1" id="ordinateurFixe">
+                        <label class="label" for="ordinateurFixe">
+                            <div class="indicator"></div>
+                        <span class="text">OrdinateurFixe</span>
+                    </label>
+                    </div>
+                    <div class="wrapper">
+                    <input class="state" type="radio" name="gendre1" id="tablette">
+                        <label class="label" for="tablette">
+                        <div class="indicator"></div>
+                        <span class="text">Tablette</span>
+                        </label>
+                    </div>
+                    <div class="wrapper">
+                        <input class="state" type="radio" name="gendre1" id="ordinateurPortable">
+                        <label class="label" for="ordinateurPortable">
+                        <div class="indicator"></div>
+                        <span class="text">Ordinateur Portable</span>
+                        </label>
+                    </div>
+                    <div class="wrapper">
+                        <input class="state" type="radio" name="gendre1" id="imprimante">
+                        <label class="label" for="imprimante">
+                        <div class="indicator"></div>
+                        <span class="text">Imprimante</span>
+                        </label>
+                    </div>
+                </div>
+                    <div id="afficheur1"></div>
+                    <div id="afficheur2"></div>
+                    <div id="afficheur3"></div>
+            </form>
+        </div>
+    </body>
+{% endblock %}

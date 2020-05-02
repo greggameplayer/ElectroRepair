@@ -1,0 +1,48 @@
+{% extends 'layout.html'%}
+{% block title%}Poster son annonce !{% endblock %}
+{% block body %}
+<link rel="stylesheet" href="CSS/post.css"/>
+<!--<script src="JS/post.js" defer></script>
+
+NE PAS TOUCHER MERCI 
+
+
+TODO VALUE AUTO => SELECT 
+-->
+<div id="contentpostmain">
+<div id="title">
+    <h2>Poster une annonce</h2>
+    <h4>Ici vous pouvez poster une annonce</h4>
+</div>
+    <form action="?page=post&action=send" method="post">
+        <h4>Titre de votre annonce</h4>
+        <div>
+            <input type="text"  required class="form-control" placeholder="Titre de votre annonce" aria-label="Ecrivez un message" aria-describedby="addon-wrapping" name="title" id="formpost">
+        </div>
+        
+        <h4>Catégorie de votre annonce</h4>
+        <div>
+        <SELECT required name="cat" size="1" class="custom-select" id="inputGroupSelect04">
+            {% for cate in categorie %}
+            <OPTION value={{cate.IDCat}} id={{cate.NomCat}}>{{cate.NomCat}} </OPTION>
+            {% endfor %}
+            </SELECT>
+        </div>
+            <div id="afficheur1"></div>
+            <div id="afficheur2"></div>
+            <div id="afficheur3"></div>
+        <h4>Détails</h4>
+        <textarea  id="detpost" rows="20" name="detail" required></textarea>
+        <h4>Photo (lien de l'image uniquement) (Ne pas toucher par défault)</h4>
+        <input type="text" name="img1" id="formpost" value="https://www.autronix.fr/_media/img/large/2-electronique-haute-resolution.jpg">
+        <br>
+          <button type="submit" class="btn btn-primary" id="Post">Poster son message </button>
+    </form>
+</div>
+
+
+
+
+{% endblock %}
+
+

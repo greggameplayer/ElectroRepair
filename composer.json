@@ -1,0 +1,40 @@
+{
+  "name": "yohan/projet-poin",
+  "type": "project",
+  "authors": [
+    {
+      "name": "YohanWildz",
+      "email": "widogue.yohan@gmail.com"
+    },
+    {
+      "name": "Grégoire Hage",
+      "email": "gregoire.hage@epsi.fr"
+    }
+  ],
+  "require": {
+    "twig/twig": "^3.0",
+    "google/apiclient": "*"
+  },
+  "autoload": {
+    "files": [
+      "app/controllers/main.controller.php",
+      "app/controllers/homepage.controller.php",
+      "app/controllers/contact.controller.php",
+      "app/controllers/post.controller.php",
+      "app/controllers/questionnaire.controller.php",
+      "app/controllers/inscription.controller.php",
+      "app/helpers/database.helper.php",
+      "app/helpers/renderer.helper.php",
+      "app/models/inscription.model.php",
+      "app/controllers/inscription.controller.php",
+      "app/controllers/login.controller.php",
+      "app/models/login.model.php",
+      "app/controllers/myaccount.controller.php",
+      "app/models/post.model.php",
+      "app/models/recherche.model.php",
+      "app/models/calendar.model.php",
+      "app/models/listeAnnonce.model.php",
+      "app/models/addEvent.model.php"
+    ]
+  }
+}

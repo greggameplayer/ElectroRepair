@@ -1,0 +1,68 @@
+<div id="maindiv">
+    <div id="alert" style="display: none;">
+    </div>
+    <form id="inscriptionform" action="" method="post">
+        <fieldset id="inputsinscription">
+            <div>
+                <input type="radio" id="professionnel" name="type" value="1" required>
+                <label for="professionnel">Professionnel</label><br>
+                <input type="radio" id="particulier" name="type" value="2" required>
+                <label for="particulier">Particulier</label><br>
+            </div>
+            <div>
+                <label for="usernameinscription">Email :</label>
+                <input  id="usernameinscription"
+                        type="email"
+                        name="Emailinscription"
+                        required>
+            </div>
+            <div>
+                <label for="passwordinscription">Mot de passe :</label>
+                <input  id="passwordinscription"
+                        type="password"
+                        name="Passwordinscription"
+                        required>
+            </div>
+            <div>
+                <label for="nominscription">Nom :</label>
+                <input id="nominscription"
+                       type="text"
+                       name="Nominscription"
+                       required>
+            </div>
+            <div>
+                <label for="prenominscription">Prenom :</label>
+                <input id="prenominscription"
+                       type="text"
+                       name="Prenominscription"
+                       required>
+            </div>
+            <div>
+                <label for="adresseinscription">Adresse :</label>
+                <input id="adresseinscription"
+                       type="text"
+                       name="Adresseinscription"
+                       required>
+            </div>
+            <div>
+                <label for="cpinscription">Code Postal :</label>
+                <input id="cpinscription"
+                       type="text"
+                       name="Cpinscription"
+                       required>
+            </div>
+            <div>
+                <label for="villeinscription">Ville :</label>
+                <input id="villeinscription"
+                       type="text"
+                       name="Villeinscription"
+                       required>
+            </div>
+        </fieldset>
+        <fieldset id="actionsinscription">
+            <input  type="submit"
+                    id="submitinscription"
+                    value="S'inscrire">
+        </fieldset>
+    </form>
+</div>

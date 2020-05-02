@@ -1,0 +1,86 @@
+#formpost {
+    width: 40vw;
+    max-height: 100vh;
+    display: flex;
+}
+
+#detpost {
+    max-width: 80vw;
+    min-width: 70vw;
+    min-height: 10vh;
+    max-height: 20vh;
+    display: flex;
+}
+#inputGroupSelect04{
+    height: auto;
+    width: auto;
+    display: flex;
+}
+
+#title{
+    padding-left: 50px;
+}
+
+h2{
+    font-size: 2.5vw;
+}
+
+h4
+{
+    margin-top: 2vh;
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 1.5vw;
+}
+
+#contentpostmain
+{
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+form
+{
+    justify-self: center;
+    align-self: center;
+}
+
+@media screen and (max-width: 1000px) {
+    .column, input[type=submit] 
+    {
+        width: 100%;
+        margin-top: 0;
+    }
+
+    img
+    {
+        padding-top: 0;
+    }
+
+    h4
+    {
+        font-size: 3vw;
+    }
+
+    h2{
+        font-size: 4vw;
+    }
+
+    #inputGroupSelect04{
+        width: 60vw;
+        font-size: 2.2vw;
+    }
+
+    #formpost {
+        font-size: 2.2vw;
+    }
+
+    #detpost {
+        font-size: 2.2vw;
+    }
+    #Post{
+        width: 100%;
+        align-items: center;
+    }
+  }
