@@ -1,0 +1,55 @@
+#maindiv
+{
+    display: flex;
+    min-height: 80vh;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 1vh;
+}
+
+#inputsinscription
+{
+    display: flex;
+    flex-direction: column;
+}
+#inputsinscription div
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#inputsinscription label
+{
+    margin-right: 1vw;
+}
+
+#inputsinscription input
+{
+    margin-bottom: 1vh;
+}
+
+#actionsinscription
+{
+    display: flex;
+    flex-direction: column;
+    margin-top: 2vh;
+}
+
+#submitinscription
+{
+    min-width: 10vw;
+    font-size: 1.2em;
+}
+#actionsinscription input
+{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#inscriptionform
+{
+    margin-top: auto;
+    margin-bottom: auto;
+}

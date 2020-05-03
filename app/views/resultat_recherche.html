@@ -1,0 +1,11 @@
+{% extends 'layout.html' %}
+{% block titel%} Recherche {% endblock %}  
+{% block body %}
+<link rel="stylesheet" href="CSS/annonce.css"/>
+<h2>Résultat de recherche</h2>
+<div  class='allwrapper'>
+    {% for annonce in AllAnnonce %}
+        {%include 'annonce.html' with {'annonce': annonce} %}
+    {%endfor%} 
+</div>
+{% endblock %}

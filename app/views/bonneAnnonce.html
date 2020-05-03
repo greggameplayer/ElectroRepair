@@ -1,0 +1,21 @@
+<link rel="stylesheet" href="CSS/annonce.css"/>
+
+<div id="maincontainerannounce">
+<div class="container">
+    <div style="text-align:center">
+      <h2>{{annonce.Titre}}</h2>
+    </div>
+    <div class="row">
+        <img id="bonneAnnonceImg" src="{{annonce.IMAGE1}}" height="300"><br>
+    </div>
+    <p>{{annonce.Description}}</p>
+    <input type="text" id="inputprofid" value="{{ annonce.codeUser }}" hidden>
+
+    <div id="calendarmain">
+        {% include 'fullcalendar.html' %}
+    </div>
+</div>
+</div>
+
+
+
