@@ -63,14 +63,23 @@ function refreshDropdown(){
 
 function onSubmitConnexion(event){
     event.preventDefault();
-    $.post("./index.php", {page: "connexion", Email: $("#emaillogin").val(), Password: $("#passwordlogin").val()}, function (results){
-        $("body").html(results);
-        refreshDropdown();
-        $("#deconnexionbt").on("click", onClickDeconnexion);
-        $("#myaccountbt").on("click", onClickMyAccount);
-        $("#DropdownMenu").toggle();
-        $("#dropdownheader").toggleClass("active");
-        document.title = "Accueil / ElectroRepair";
+    // needs for recaptacha ready
+    grecaptcha.ready(function() {
+        // do request for recaptcha token
+        // response is promise with passed token
+        grecaptcha.execute('6LdGkfMUAAAAAINOIMENgwddAWUnXGEpStWsYKEJ', {action: 'connect'}).then(function(token) {
+            // add token to form
+            $('#dropdownformheader').prepend('<input type="hidden" name="g-recaptcha-response" value="' + token + '">');
+            $.post("./index.php", {page: "connexion", Email: $("#emaillogin").val(), Password: $("#passwordlogin").val(), token: token}, function (results){
+                $("body").html(results);
+                refreshDropdown();
+                $("#deconnexionbt").on("click", onClickDeconnexion);
+                $("#myaccountbt").on("click", onClickMyAccount);
+                $("#DropdownMenu").toggle();
+                $("#dropdownheader").toggleClass("active");
+                document.title = "Accueil / ElectroRepair";
+            });
+        });
     });
 }
 

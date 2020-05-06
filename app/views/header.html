@@ -40,6 +40,14 @@
                                 <div class='invalid-feedback'>
                                     L'utilisateur auquel vous tentez de vous connecter n'existe pas !
                                 </div>
+                                {% elseif Failed is defined and Failed == "captchaError" %}
+                                <div class='invalid-feedback'>
+                                    Erreur lors de la complétion du captcha !
+                                </div>
+                                {% elseif Failed is defined and Failed == "botDetected" %}
+                                <div class='invalid-feedback'>
+                                    Vous êtes un bot !
+                                </div>
                                 {% endif %}
                                 <label for="emaillogin" class="dditems">Adresse email</label>
                                 <input type="email" class="form-control dditems" id="emaillogin" name="emaillogin" placeholder="email@example.com" required>
