@@ -2,6 +2,9 @@
 namespace Models;
 
 function getUser($Email, $Password){
+    if (! isset($_SESSION["attempts"])){
+        $_SESSION["attempts"] = 0;
+    }
     $qcheckemail = \Helpers\getDatabaseConnection()->prepare("SELECT * FROM users WHERE email = :email");
     $qcheckemail->execute([
         "email" => $Email
@@ -16,10 +19,12 @@ function getUser($Email, $Password){
                 $_SESSION["id"] = $donnees["IDuser"];
                 $_SESSION["group"] = $donnees["Codecat"];
                 $_SESSION["failed"] = false;
+                $_SESSION["attempts"] = 0;
                 \Controllers\getHomepageController();
                 return;
             }else{
                 $_SESSION["failed"] = "mdp";
+                $_SESSION["attempts"] += 1;
                 \Controllers\getHomepageController();
                 return;
             }
@@ -28,5 +33,6 @@ function getUser($Email, $Password){
     }
     $qcheckemail->closeCursor();
     $_SESSION["failed"] = "user";
+    $_SESSION["attempts"] += 1;
     \Controllers\getHomepageController();
 }
