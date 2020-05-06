@@ -1,6 +1,6 @@
 <?php
 namespace Helpers;
-define("HOST","localhost:3308");
+define("HOST","localhost:3306");
 define("DB_NAME","electrorepair");
 define("USER", "root");
 define("PASSWORD","");
