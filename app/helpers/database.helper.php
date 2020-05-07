@@ -1,9 +1,9 @@
 <?php
 namespace Helpers;
 define("HOST","localhost:3306");
-define("DB_NAME","electrorepair");
-define("USER", "root");
-define("PASSWORD","");
+define("DB_NAME","maritleawzvictor.mysql.db");
+define("USER", "maritleawzvictor");
+define("PASSWORD","Electrorepair123456");
 use PDO;
 use PDOException;
 function getDatabaseConnection()
