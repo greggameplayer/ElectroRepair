@@ -21,14 +21,20 @@ function getContactController(){
 
 function sendMail(){
     if(isset($_POST["mailform"])){
-        $header="MIME-Version: 1.0\r\n";
-        $header.='From:"Client"<electrorepair123456@gmail.com>'."\n";
-        $header.='Content-Type:text/html; charset="utf-8"'."\n";
-        $header.='Content-Transfer-Encoding: 8bit';
-
-        $message=$_POST["subject"];
-
-        mail("victormarit.95@gmail.com","test",$message,$header);
+        $email = new \SendGrid\Mail\Mail();
+        $email->setFrom("contact@electrorepair.com", "Electro Repair");
+        $email->setSubject("Contact");
+        $email->addTo($_POST["email"], "Utilisateur");
+        $email->addContent("text/plain", $_POST["subject"]);
+        $sendgrid = new \SendGrid(getenv('SENDGRID_API_KEY'));
+        try {
+            $response = $sendgrid->send($email);
+            print $response->statusCode() . "\n";
+            print_r($response->headers());
+            print $response->body() . "\n";
+        } catch (Exception $e) {
+            echo 'Caught exception: '. $e->getMessage() ."\n";
+        }
     
     }
     if(isset($_SESSION["id"])){
