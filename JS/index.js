@@ -9,7 +9,6 @@ $("document").ready(function(){
 
 function onSubmitInscriptionForm(event){
     event.preventDefault();
-    console.log($("input[name=type]:checked").val());
     $.post("./index.php", {page: "inscription.model", Email: $("#usernameinscription").val(), Password: $("#passwordinscription").val(),
     Prenom: $("#prenominscription").val(), Nom: $("#nominscription").val(), Adresse: $("#adresseinscription").val(),
     CodePostal: $("#cpinscription").val(), Ville: $("#villeinscription").val(), Codecat: $("input[name=type]:checked").val()}, function(results){
