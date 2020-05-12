@@ -2,3 +2,5 @@
 /vendor/
 token.json
 credentials.json
+reCaptcha.json
+sendgrid.env

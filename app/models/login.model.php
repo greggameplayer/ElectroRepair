@@ -10,7 +10,7 @@ function getUser($Email, $Password){
         $_SESSION["failed"] = "captchaError";
         exit;
     }
-    $secretKey = "6LdGkfMUAAAAAEv7OXuBSo-8seLvs3AgrTgLIwVo";
+    $secretKey = $_POST["privateKey"];
     $ip = $_SERVER['REMOTE_ADDR'];
 
     $url = 'https://www.google.com/recaptcha/api/siteverify';

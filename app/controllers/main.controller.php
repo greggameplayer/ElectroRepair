@@ -67,6 +67,10 @@ function getMainController(){
                 break;
             case "addEvent.model":
                 echo \Models\addCalendarEvent($_POST["start"], $_POST["finish"], $_POST["date"], $_POST["idPro"]);
+                break;
+            case "captcha":
+                echo \Models\getRecaptchaKeys();
+                break;
         }
 
     }else
