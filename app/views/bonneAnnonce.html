@@ -10,9 +10,13 @@
     </div>
     <p>{{annonce.Description}}</p>
     <input type="text" id="inputprofid" value="{{ annonce.codeUser }}" hidden>
+    <input type="text" id="inputannonceid" value="{{ annonce.IDannonce }}" hidden>
 
     <div id="calendarmain">
         {% include 'fullcalendar.html' %}
+    </div>
+    <div id="commentsmain">
+        {% include 'comments.html' %}
     </div>
 </div>
 </div>

@@ -82,13 +82,16 @@ function getResultatController(){
     }
 }
 
-function getAnnonceController(){
-    $value=$_GET['annonce'];
+function getAnnonceController($value=0){
+    if(isset($_GET['annonce'])) {
+        $value = $_GET['annonce'];
+    }
     if(isset($_SESSION["id"])){
         echo getRenderer()->render('afficheAnnonce.html',[
             "Myannonce" => getGoodAnnonce($value),
             "Session" => $_SESSION["id"],
-            "Group" => $_SESSION["group"]
+            "Group" => $_SESSION["group"],
+            "Comments" => \Models\getComments($value)
         ]);
     }else {
         getHomepageController();

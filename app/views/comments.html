@@ -1,0 +1,46 @@
+<link rel="stylesheet" href="CSS/comments.css"/>
+<script src="JS/comments.js" defer></script>
+
+<div class="row bootstrap snippets">
+    <div class="col-md-6 col-md-offset-2 col-sm-12">
+        <div class="comment-wrapper">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    Laisser un commentaire
+                </div>
+                <div class="panel-body">
+                    <form id="commentform">
+                        <div class="form-group">
+                        <textarea id="commenttextarea" class="form-control" placeholder="écrivez un commentaire ici..." maxlength="250" required></textarea>
+                        <p id="characterlength">0/250</p>
+                        </div>
+                        <button type="submit" class="btn btn-info pull-right">Poster</button>
+                    </form>
+                    <div class="clearfix"></div>
+                    <hr>
+                    <ul class="media-list">
+                        {% if Comments.IDuser is defined %}
+                            {% for i in 0 .. (Comments.Id|length - 1) %}
+                            <li class="media">
+                                <a class="pull-left">
+                                    <img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle">
+                                </a>
+                                <div class="media-body">
+                                    <span class="text-muted pull-right">
+                                        <small class="text-muted">{{ Comments.Timestamp[i] }}</small>
+                                    </span>
+                                    <strong class="text-success">{{ Comments.Prenom[i] }} {{ Comments.Nom[i] }}</strong>
+                                    <p>
+                                        {{ Comments.Content[i] }}
+                                    </p>
+                                </div>
+                            </li>
+                            {% endfor %}
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

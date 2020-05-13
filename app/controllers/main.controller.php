@@ -71,6 +71,9 @@ function getMainController(){
             case "captcha":
                 echo \Models\getRecaptchaKeys();
                 break;
+            case "AddComment":
+                \Models\AddComment();
+                break;
         }
 
     }else
