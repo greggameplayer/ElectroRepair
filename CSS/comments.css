@@ -1,0 +1,47 @@
+.comment-wrapper .panel-body {
+}
+
+.comment-wrapper .media-list .media img {
+    width:64px;
+    height:64px;
+    border:2px solid #e5e7e8;
+}
+
+.comment-wrapper .media-list .media {
+    border-bottom:1px dashed grey;
+    margin-bottom:25px;
+}
+
+.media .media-body
+{
+    display: flex;
+    flex-direction: column;
+}
+
+.media-body span, .media-body strong
+{
+    margin-left: 1em;
+}
+
+.media-body p
+{
+    text-align: left;
+}
+
+#commentsmain
+{
+    margin-top: 2vh;
+    display: flex;
+    width: 100%;
+}
+
+.comment-wrapper .panel-body textarea
+{
+    min-height: 80px;
+}
+
+#characterlength
+{
+    margin: 0;
+    text-align: right;
+}
