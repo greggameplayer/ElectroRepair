@@ -20,7 +20,6 @@ function setUser($Email, $Password, $Prenom, $Nom, $Adresse, $CodePostal, $Ville
             "cost" => 12,
         ];
         $hashpassword = password_hash($Password, PASSWORD_BCRYPT, $options);
-        if($Codecat == "1"){
             $calendar = new Google_Service_Calendar_Calendar();
             $calendar->setSummary($Nom . " " . $Prenom);
             $calendar->setTimeZone('Europe/Paris');
@@ -48,20 +47,6 @@ function setUser($Email, $Password, $Prenom, $Nom, $Adresse, $CodePostal, $Ville
                 "calendar" => $createdCalendar->getId()
             ]);
             $qinscription->closeCursor();
-        }else {
-            $qinscription = getDatabaseConnection()->prepare("INSERT INTO users(email,PassWord,Prenom,Nom,Adresse,CP,Ville,Codecat) VALUES(:email,:password,:prenom,:nom,:adresse,:cp,:ville,:codecateg)");
-            $qinscription->execute([
-                "email" => $Email,
-                "password" => $hashpassword,
-                "prenom" => $Prenom,
-                "nom" => $Nom,
-                "adresse" => $Adresse,
-                "cp" => $CodePostal,
-                "ville" => $Ville,
-                "codecateg" => $Codecat,
-            ]);
-            $qinscription->closeCursor();
-        }
     }
     echo (($uniquemail == 1) ? "le nouvel utilisateur a été créé" : "l'utilisateur existe déjà");
 }
