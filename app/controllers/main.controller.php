@@ -41,6 +41,9 @@ function getMainController(){
             case 'annonceQuestionnaire':
                 getResultatQuestionnaireController();
             break;
+            case 'confirmation':
+                \Models\confirmation();
+            break;
             default:
                 getHomepageController();
             break;

@@ -38,7 +38,8 @@
       "app/models/listeAnnonce.model.php",
       "app/models/addEvent.model.php",
       "app/models/reCaptcha.model.php",
-      "app/models/comments.model.php"
+      "app/models/comments.model.php",
+      "app/models/confirmation.model.php"
     ]
   }
 }
