@@ -19,7 +19,7 @@
                     <div class="clearfix"></div>
                     <hr>
                     <ul class="media-list">
-                        {% if Comments.IDuser is defined %}
+                        {% if Comments.Id|length != 0 %}
                             {% for i in 0 .. (Comments.Id|length - 1) %}
                             <li class="media">
                                 <a class="pull-left">

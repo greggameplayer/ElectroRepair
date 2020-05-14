@@ -19,6 +19,7 @@ function onSubmitCommentForm(event){
     $.post("./index.php", {page: "AddComment", IDannonce: $("#inputannonceid").val(), Content: $("#commenttextarea").val()}, function(results){
         $("body").html(results);
         reloadCalendar();
+        applyDateDiff();
     });
 }
 
