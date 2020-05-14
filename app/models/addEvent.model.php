@@ -6,6 +6,7 @@ use function Helpers\getDatabaseConnection;
 
 function addCalendarEvent($start, $finish, $date, $idPro){
     $ProID = getCalendarId($idPro);
+    $ClientID = getCalendarId($_SESSION["id"]);
     $qGetNomPrenom = getDatabaseConnection()->prepare("SELECT Prenom, Nom FROM users WHERE IDuser = :id");
     $qGetNomPrenom->execute([
         "id" => $_SESSION["id"]
@@ -30,5 +31,29 @@ function addCalendarEvent($start, $finish, $date, $idPro){
     }
     $qGetNomPrenom->closeCursor();
 
+    $qGetNomPrenomPro = getDatabaseConnection()->prepare("SELECT Prenom, Nom FROM users WHERE IDuser = :id");
+    $qGetNomPrenomPro->execute([
+        "id" => $idPro
+    ]);
+    while ($donneesPro = $qGetNomPrenomPro->fetch()){
+        $eventClient = new Google_Service_Calendar_Event(array(
+            'summary' => 'Rendez-vous avec ' . $donneesPro["Nom"] . ' ' . $donneesPro["Prenom"],
+            'location' => '',
+            'description' => '',
+            'start' => array(
+                'dateTime' => $date . 'T'. $start .':00+02:00',
+                'timeZone' => 'Europe/Paris',
+            ),
+            'end' => array(
+                'dateTime' => $date . 'T'. $finish .':00+02:00',
+                'timeZone' => 'Europe/Paris',
+            )
+        ));
+
+        $serviceClient = startCalendar();
+        $eventClient = $serviceClient->events->insert($ClientID, $eventClient);
+    }
+    $qGetNomPrenomPro->closeCursor();
+    
     return "le rendez-vous a été correctement ajouté";
 }
