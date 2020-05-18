@@ -5,6 +5,7 @@ $("document").ready(function(){
     $("#deconnexionbt").on("click", onClickDeconnexion);
     $(".state").on("change", afficher);
     $("#myaccountbt").on("click", onClickMyAccount);
+    $("#discussbt").on("click", onClickDiscussBt);
 });
 
 function onSubmitInscriptionForm(event){
@@ -101,6 +102,13 @@ function onClickDeconnexion(_event){
         $("body").html(results);
         refreshDropdown();
         window.location.reload();
+    });
+}
+
+function onClickDiscussBt(_event){
+    $.post("./index.php", {page: "discuss"}, function (results){
+       $("body").html(results);
+       refreshDropdown();
     });
 }
 

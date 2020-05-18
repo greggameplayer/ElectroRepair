@@ -32,6 +32,7 @@
       "app/controllers/login.controller.php",
       "app/models/login.model.php",
       "app/controllers/myaccount.controller.php",
+      "app/controllers/discussion.controller.php",
       "app/models/post.model.php",
       "app/models/recherche.model.php",
       "app/models/calendar.model.php",

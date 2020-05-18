@@ -65,6 +65,9 @@ function getMainController(){
             case "myaccount":
                 getMyAccountController();
                 break;
+            case "discuss":
+                getDiscussionController();
+                break;
             case "calendar":
                 echo \Models\getCalendarId($_POST["id"]);
                 break;

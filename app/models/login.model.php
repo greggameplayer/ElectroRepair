@@ -32,7 +32,7 @@ function getUser($Email, $Password){
     ]);
     if($responseKeys["success"]) {
         if ($qcheckemail->rowCount() == 1) {
-            $qcheckpassword = \Helpers\getDatabaseConnection()->prepare("SELECT PassWord, IDuser, Codecat FROM users WHERE email = :email");
+            $qcheckpassword = \Helpers\getDatabaseConnection()->prepare("SELECT PassWord, IDuser, Codecat, confirmed FROM users WHERE email = :email");
             $qcheckpassword->execute([
                 "email" => $Email
             ]);
@@ -42,6 +42,7 @@ function getUser($Email, $Password){
                     $_SESSION["group"] = $donnees["Codecat"];
                     $_SESSION["failed"] = false;
                     $_SESSION["attempts"] = 0;
+                    $_SESSION["tokentest"] = $donnees["confirmed"];
                     \Controllers\getHomepageController();
                     return;
                 } else {
