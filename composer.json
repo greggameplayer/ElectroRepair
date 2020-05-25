@@ -15,9 +15,13 @@
     "twig/twig": "^3.0",
     "google/apiclient": "*",
     "php": ">=5.6.13",
-    "sendgrid/sendgrid": "~7"
+    "sendgrid/sendgrid": "~7",
+    "cboden/ratchet": "^0.4.2"
   },
   "autoload": {
+    "psr-4": {
+      "Chat\\": "server"
+    },
     "files": [
       "app/controllers/main.controller.php",
       "app/controllers/homepage.controller.php",
@@ -40,6 +44,7 @@
       "app/models/addEvent.model.php",
       "app/models/reCaptcha.model.php",
       "app/models/comments.model.php",
+      "app/models/discussions.model.php",
       "app/models/confirmation.model.php"
     ]
   }

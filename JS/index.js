@@ -6,6 +6,7 @@ $("document").ready(function(){
     $(".state").on("change", afficher);
     $("#myaccountbt").on("click", onClickMyAccount);
     $("#discussbt").on("click", onClickDiscussBt);
+    $("#accordiondiscussion .card .card-header .mb-0 button").on("click", onClickDiscussAccordion);
 });
 
 function onSubmitInscriptionForm(event){
@@ -17,6 +18,14 @@ function onSubmitInscriptionForm(event){
         $("#alert").css("display", "block");
         refreshDropdown();
         $("#submitinscription").prop("disabled", true);
+    });
+}
+
+function onClickDiscussAccordion(event){
+    $.post("./index.php", {page: "chatroom", id: event.currentTarget.parentNode.children[0].value}, function (results){
+        $("body").html(results);
+        document.title = "Inscription / ElectroRepair";
+        refreshDropdown();
     });
 }
 
@@ -109,6 +118,7 @@ function onClickDiscussBt(_event){
     $.post("./index.php", {page: "discuss"}, function (results){
        $("body").html(results);
        refreshDropdown();
+       document.title = "Mes discussions / ElectroRepair";
     });
 }
 
@@ -116,6 +126,7 @@ function onClickMyAccount(_event){
     $.post("./index.php", {page: "myaccount"}, function (results){
         $("body").html(results);
         refreshDropdown();
+        document.title = "Mon compte / ElectroRepair";
     });
 }
 

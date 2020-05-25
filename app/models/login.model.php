@@ -63,3 +63,13 @@ function getUser($Email, $Password){
     }
     \Controllers\getHomepageController();
 }
+
+function getUserById($id){
+    $qgetUserById = \Helpers\getDatabaseConnection()->prepare("SELECT * FROM users WHERE IDuser = :id");
+    $qgetUserById->execute([
+        "id" => $id
+    ]);
+    $result = $qgetUserById->fetchAll();
+    $qgetUserById->closeCursor();
+    return $result;
+}

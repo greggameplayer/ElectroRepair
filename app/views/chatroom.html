@@ -1,0 +1,69 @@
+{% extends 'layout.html' %}
+{% block title %}
+Discussion
+{% endblock %}
+{% block body %}
+<div id="contentchatroom">
+    <div class="row">
+        <div class="col-md-4">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <td>
+                            {% for person in You %}
+                            <div>{{ person.Prenom }} {{ person.Nom }}</div>
+                            {% endfor %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Professionel</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for person in Discussion %}
+                    <tr><td>{{ person.Prenom }} {{ person.Nom }}</td></tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <input type="hidden" id="youIdchatroom" value="{{ Session }}">
+        <input type="hidden" id="othIdchatroom" value="{{ Discussion[0].IDuser }}">
+        <input type="hidden" id="channelIdchatroom" value="{{ Discussion[0].Id }}">
+        <div class="col-md-3 col-sm-offset-4 frame">
+            <ul id="chatlist">
+                {% for message in Messages %}
+                    {% if message.Sender == Session %}
+                        <li style="width:100%">
+                            <div class="msj macro">
+                                <div class="text text-l">
+                                    <p>{{ message.Content }}</p>
+                                    <p><small>{{ message.Timestamp|date('d/m/Y H:i:s') }}</small></p>
+                                </div>
+                            </div>
+                        </li>
+                    {% else %}
+                        <li style="width:100%;">
+                            <div class="msj-rta macro">
+                                <div class="text text-r">
+                                    <p>{{ message.Content }}</p>
+                                    <p><small>{{ message.Timestamp|date('d/m/Y H:i:s') }}</small></p>
+                                </div>
+                                <div class="avatar" style="padding:0px 0px 0px 10px !important"></div>
+                            </div>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+            <div>
+                <div class="msj-rta macro" style="margin:auto">
+                    <div class="text text-r" style="background:whitesmoke !important">
+                        <input class="mytext" maxlength="250" placeholder="Entrer un message..."/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<link rel="stylesheet" href="./CSS/chatroom.css"/>
+<script src="./JS/chatroom.js" defer></script>
+{% endblock %}

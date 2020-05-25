@@ -3,8 +3,22 @@
 Mes discussions
 {% endblock %}
 {% block body %}
-<link rel="stylesheet" href="CSS/discussion.css"/>
 <div id="contentdiscussions">
-
+    <h1 class="display-5 text-center mt-3">Mes discussions</h1>
+    <div id="accordiondiscussion">
+    {% for discussion in Discussions %}
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <input type="hidden" class="idDiscussion" value="{{ discussion.Id }}">
+                    <button class="btn btn-link">
+                        {{ discussion.Prenom }} {{ discussion.Nom }} - {{ discussion.RDV|date("d/m/Y H:i", false) }}
+                    </button>
+                </h5>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
 </div>
+<link rel="stylesheet" href="./CSS/discussion.css"/>
 {% endblock %}
