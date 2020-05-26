@@ -54,6 +54,14 @@ function addCalendarEvent($start, $finish, $date, $idPro){
         $eventClient = $serviceClient->events->insert($ClientID, $eventClient);
     }
     $qGetNomPrenomPro->closeCursor();
-    
+
+    $qAddDiscussion = getDatabaseConnection()->prepare("INSERT INTO discussion(IdPro, IdUser, RDV) VALUES(:idpro, :iduser, :rdv)");
+    $qAddDiscussion->execute([
+        "idpro" => $idPro,
+        "iduser" => $_SESSION["id"],
+        "rdv" => $date . 'T'. $start .':00+02:00'
+    ]);
+
+    $qAddDiscussion->closeCursor();
     return "le rendez-vous a été correctement ajouté";
 }

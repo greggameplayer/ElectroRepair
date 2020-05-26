@@ -21,6 +21,7 @@
                     <div class="dropdown-menu dditemsprofile" id="dropdownprofilemenu">
                         <a class="dropdown-item dditemsprofile" id="paramsb" href="#"><i class="fas fa-tools"></i> Paramètres</a>
                         <a class="dropdown-item dditemsprofile" id="myaccountbt" href="#"><i class="fas fa-user-circle"></i> Mon compte</a>
+                        <a class="dropdown-item dditemsprofile" id="discussbt" href="#"><i class="fas fa-comments"></i> Mes discussions</a>
                         <a class="dropdown-item dditemsprofile" id="deconnexionbt" href="#"><i class="fas fa-user-slash"></i> Se déconnecter</a>
                     </div>
                 </li>
@@ -45,6 +46,10 @@
                                 {% elseif Failed is defined and Failed == "botDetected" %}
                                 <div class='invalid-feedback'>
                                     Vous êtes un bot !
+                                </div>
+                                {% elseif Tokentest == 0  and Tokentest is defined %}
+                                <div class='invalid-feedback'>
+                                    Veuillez activer votre compte via l'email envoyé
                                 </div>
                                 {% endif %}
                                 <label for="emaillogin" class="dditems">Adresse email</label>
@@ -75,7 +80,7 @@
     </nav>
 </header>
     {% if Token == 1  and Token is defined %}
-    <div class='invalid-feedback'>
+    <div class='valid-feedback'>
         Votre compte a bien été activé
     </div>
     {% endif %}

@@ -22,10 +22,10 @@ function getMainController(){
             break;
             case "aPropos":
                 getAproposController();
-            break; 
+            break;
             case 'CGU':
                 getCGUController();
-            break; 
+            break;
             case 'resultat_recherche':
                 getResultatController();
             break;
@@ -34,7 +34,7 @@ function getMainController(){
             break;
             case 'inscription':
                 getInscriptionController();
-            break; 
+            break;
             case 'annonce':
                 getAnnonceController();
             break;
@@ -65,6 +65,9 @@ function getMainController(){
             case "myaccount":
                 getMyAccountController();
                 break;
+            case "discuss":
+                getDiscussionController();
+                break;
             case "calendar":
                 echo \Models\getCalendarId($_POST["id"]);
                 break;
@@ -74,8 +77,14 @@ function getMainController(){
             case "captcha":
                 echo \Models\getRecaptchaKeys();
                 break;
+            case "chatroom":
+                getChatroomController();
+                break;
             case "AddComment":
                 \Models\AddComment();
+                break;
+            case "sendMessage":
+                echo \Models\saveMessage();
                 break;
         }
 
