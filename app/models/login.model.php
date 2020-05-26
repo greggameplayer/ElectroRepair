@@ -32,7 +32,7 @@ function getUser($Email, $Password){
     ]);
     if($responseKeys["success"]) {
         if ($qcheckemail->rowCount() == 1) {
-            $qcheckpassword = \Helpers\getDatabaseConnection()->prepare("SELECT PassWord, IDuser, Codecat FROM users WHERE email = :email");
+            $qcheckpassword = \Helpers\getDatabaseConnection()->prepare("SELECT PassWord, IDuser, Codecat, confirmed FROM users WHERE email = :email");
             $qcheckpassword->execute([
                 "email" => $Email
             ]);
@@ -41,6 +41,10 @@ function getUser($Email, $Password){
                     
                     $_SESSION["failed"] = false;
                     $_SESSION["attempts"] = 0;
+<<<<<<< HEAD
+=======
+                    $_SESSION["tokentest"] = $donnees["confirmed"];
+>>>>>>> 127e10c35458e2f7e14ff0b2d9688c2cd7e6827b
                     \Controllers\get2authController($donnees["IDuser"],$donnees["Codecat"]);
                     return;
                 } else {
@@ -60,4 +64,14 @@ function getUser($Email, $Password){
         $_SESSION["attempts"] += 1;
     }
     \Controllers\getHomepageController();
+}
+
+function getUserById($id){
+    $qgetUserById = \Helpers\getDatabaseConnection()->prepare("SELECT * FROM users WHERE IDuser = :id");
+    $qgetUserById->execute([
+        "id" => $id
+    ]);
+    $result = $qgetUserById->fetchAll();
+    $qgetUserById->closeCursor();
+    return $result;
 }

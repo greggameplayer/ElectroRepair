@@ -15,9 +15,13 @@
     "twig/twig": "^3.0",
     "google/apiclient": "*",
     "php": ">=5.6.13",
-    "sendgrid/sendgrid": "~7"
+    "sendgrid/sendgrid": "~7",
+    "cboden/ratchet": "^0.4.2"
   },
   "autoload": {
+    "psr-4": {
+      "Chat\\": "server"
+    },
     "files": [
       "app/controllers/main.controller.php",
       "app/controllers/homepage.controller.php",
@@ -33,6 +37,7 @@
       "app/controllers/login.controller.php",
       "app/models/login.model.php",
       "app/controllers/myaccount.controller.php",
+      "app/controllers/discussion.controller.php",
       "app/models/post.model.php",
       "app/models/recherche.model.php",
       "app/models/calendar.model.php",
@@ -41,6 +46,7 @@
       "app/models/reCaptcha.model.php",
       "app/models/comments.model.php",
       "app/models/confirmation.model.php",
+      "app/models/discussions.model.php",
       "app/controllers/2auth.controller.php",
       "app/controllers/settingsusers.controller.php"
     ]

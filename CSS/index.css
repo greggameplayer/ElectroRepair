@@ -102,3 +102,9 @@ header.masthead h1 {
 	flex-direction: column;
 	flex-grow: 1;
 }
+
+#accordiondiscussion
+{
+	width: 50vw;
+	margin-top: 2vh;
+}
