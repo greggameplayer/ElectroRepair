@@ -41,10 +41,7 @@ function getUser($Email, $Password){
                     
                     $_SESSION["failed"] = false;
                     $_SESSION["attempts"] = 0;
-<<<<<<< HEAD
-=======
                     $_SESSION["tokentest"] = $donnees["confirmed"];
->>>>>>> 127e10c35458e2f7e14ff0b2d9688c2cd7e6827b
                     \Controllers\get2authController($donnees["IDuser"],$donnees["Codecat"]);
                     return;
                 } else {
