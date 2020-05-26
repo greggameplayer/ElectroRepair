@@ -11,7 +11,8 @@ function getComments($IdAnnonce){
         "Timestamp" => [],
         "Content" => [],
         "Prenom" => [],
-        "Nom" => []
+        "Nom" => [],
+        "Notation" => []
     ];
     $qGetComments = getDatabaseConnection()->prepare("SELECT * FROM comments, annonce WHERE comments.IDannonce = annonce.IDannonce and annonce.IDannonce = :id ORDER BY comments.Id DESC");
     $qGetComments->execute([
@@ -23,6 +24,7 @@ function getComments($IdAnnonce){
         array_push($result["IDannonce"], $donnees["IDannonce"]);
         array_push($result["Timestamp"], $donnees["Timestamp"]);
         array_push($result["Content"], $donnees["Content"]);
+        array_push($result["Notation"], $donnees["Note"]);
     }
     $qGetComments->closeCursor();
 
@@ -45,11 +47,12 @@ function getComments($IdAnnonce){
 }
 
 function AddComment(){
-    $qAddComment = getDatabaseConnection()->prepare("INSERT INTO comments(IDuser, IDannonce, Content) VALUES(:iduser, :idannonce, :content)");
+    $qAddComment = getDatabaseConnection()->prepare("INSERT INTO comments(IDuser, IDannonce, Content, Note) VALUES(:iduser, :idannonce, :content, :notation)");
     $qAddComment->execute([
         "iduser" => $_SESSION["id"],
         "idannonce" => $_POST["IDannonce"],
-        "content" => $_POST["Content"]
+        "content" => $_POST["Content"],
+        "notation"=> $_POST["Notation"]
     ]);
     $qAddComment->closeCursor();
 

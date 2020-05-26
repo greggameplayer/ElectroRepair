@@ -11,6 +11,11 @@
     <p>{{annonce.Description}}</p>
     <input type="text" id="inputprofid" value="{{ annonce.codeUser }}" hidden>
     <input type="text" id="inputannonceid" value="{{ annonce.IDannonce }}" hidden>
+    {% if annonce.Moyenne != NULL %}
+        <div>Note moyenne: {{annonce.Moyenne}} <i class="fas fa-star"></i></div>
+    {% else %}
+        <div>Note moyenne: Non évalué</div>
+    {% endif %}
 
     <div id="calendarmain">
         {% include 'fullcalendar.html' %}

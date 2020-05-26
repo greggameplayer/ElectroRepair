@@ -45,3 +45,15 @@
     margin: 0;
     text-align: right;
 }
+
+.commentsStars
+{
+    margin-left:1em;
+}
+
+#etoileEntry
+{
+    display:flex;
+    flex-direction: row;
+    text-align: left;
+}
