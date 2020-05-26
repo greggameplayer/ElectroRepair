@@ -14,7 +14,7 @@ TODO VALUE AUTO => SELECT
     <h2>Poster une annonce</h2>
     <h4>Ici vous pouvez poster une annonce</h4>
 </div>
-    <form action="?page=post&action=send" method="post">
+    <form action="?page=post&action=send" method="post" enctype="multipart/form-data">
         <h4>Titre de votre annonce</h4>
         <div>
             <input type="text"  required class="form-control" placeholder="Titre de votre annonce" aria-label="Ecrivez un message" aria-describedby="addon-wrapping" name="title" id="formpost">
@@ -33,9 +33,13 @@ TODO VALUE AUTO => SELECT
             <div id="afficheur3"></div>
         <h4>Détails</h4>
         <textarea  id="detpost" rows="20" name="detail" required></textarea>
-        <h4>Photo (lien de l'image uniquement) (Ne pas toucher par défault)</h4>
-        <input type="text" name="img1" id="formpost" value="https://www.autronix.fr/_media/img/large/2-electronique-haute-resolution.jpg">
+        <h4>Photo</h4>
+
+        <input type="file" name="annonce_image">
+        
         <br>
+        <br>
+
           <button type="submit" class="btn btn-primary" id="Post">Poster son message </button>
     </form>
 </div>
