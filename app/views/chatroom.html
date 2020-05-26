@@ -16,7 +16,11 @@ Discussion
                         </td>
                     </tr>
                     <tr>
-                        <th>Professionel</th>
+                        {% if You[0].Codecat == 2 %}
+                            <th>Professionel</th>
+                        {% else %}
+                            <th>Client</th>
+                        {% endif %}
                     </tr>
                 </thead>
                 <tbody>
