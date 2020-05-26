@@ -38,11 +38,10 @@ function getUser($Email, $Password){
             ]);
             while ($donnees = $qcheckpassword->fetch()) {
                 if (password_verify($Password, $donnees["PassWord"])) {
-                    $_SESSION["id"] = $donnees["IDuser"];
-                    $_SESSION["group"] = $donnees["Codecat"];
+                    
                     $_SESSION["failed"] = false;
                     $_SESSION["attempts"] = 0;
-                    \Controllers\getHomepageController();
+                    \Controllers\get2authController($donnees["IDuser"],$donnees["Codecat"]);
                     return;
                 } else {
                     $_SESSION["failed"] = "mdp";

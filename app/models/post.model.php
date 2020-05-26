@@ -7,9 +7,9 @@ use function Helpers\getDatabaseConnection;
 
 
 
-function sendAnnonce($titre,$desc,$codecat,$codeuser,$img1='https://www.autronix.fr/_media/img/large/2-electronique-haute-resolution.jpg'){
+function sendAnnonce($titre,$desc,$codecat,$codeuser,$img1){
     $bdd = getDatabaseConnection();
-    $query=$bdd->prepare("INSERT INTO annonce(Titre,Description,CodeCat,codeUser,IMAGE1) VALUES (:titre,:desc,:codecat,:codeuser,:img1)");
+    $query=$bdd->prepare("INSERT INTO annonce(Titre,Description,CodeCat,codeUser,IMAGE1) VALUES(:titre,:desc,:codecat,:codeuser,:img1)");
     $query->execute(["titre" => $titre,
         "desc" => $desc,
         "codecat"=> $codecat,
