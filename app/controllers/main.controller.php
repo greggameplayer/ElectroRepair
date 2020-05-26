@@ -47,9 +47,6 @@ function getMainController(){
             case '2auth':
                 get2authController($_POST['id'],$_POST['cat']);
             break;
-            case '2authtest':
-                get2authtestController();
-            break; 
             case 'settings':
                 getSettingsUsersController();
             break;
@@ -98,7 +95,7 @@ function getMainController(){
         }
 
     }else
-        
+
     getHomepageController();
 
 
