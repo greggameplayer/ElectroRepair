@@ -32,6 +32,7 @@
       "app/helpers/database.helper.php",
       "app/helpers/renderer.helper.php",
       "app/models/inscription.model.php",
+      "app/models/2auth.model.php",
       "app/controllers/inscription.controller.php",
       "app/controllers/login.controller.php",
       "app/models/login.model.php",
@@ -44,8 +45,10 @@
       "app/models/addEvent.model.php",
       "app/models/reCaptcha.model.php",
       "app/models/comments.model.php",
+      "app/models/confirmation.model.php",
       "app/models/discussions.model.php",
-      "app/models/confirmation.model.php"
+      "app/controllers/2auth.controller.php",
+      "app/controllers/settingsusers.controller.php"
     ]
   }
 }

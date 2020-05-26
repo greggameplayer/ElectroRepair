@@ -44,6 +44,15 @@ function getMainController(){
             case 'confirmation':
                 \Models\confirmation();
             break;
+            case '2auth':
+                get2authController($_POST['id'],$_POST['cat']);
+            break;
+            case '2authtest':
+                get2authtestController();
+            break; 
+            case 'settings':
+                getSettingsUsersController();
+            break;
             default:
                 getHomepageController();
             break;
@@ -89,7 +98,8 @@ function getMainController(){
         }
 
     }else
-        getHomepageController();
+        
+    getHomepageController();
 
 
 }

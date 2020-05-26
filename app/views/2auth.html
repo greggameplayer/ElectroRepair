@@ -1,0 +1,34 @@
+{% extends 'layout.html' %}
+{% block title %}Sécurité{% endblock %}
+{% block body %}
+<link rel="stylesheet" href="CSS/2auth.css">
+<div id="authform">
+  <h1>
+    Entrez le code de double authentification qui est sur votre téléphone 
+</h1>
+{% if error is defined %}
+{% if error == "code" %}
+<h2 style="color: red;">Code non valide ! </h2>
+{%endif%}
+{% endif %}
+
+    <form action='?page=2auth&action=test' method='POST'>
+      <div class="form-row">
+        <div class="col-12 col-md-9 mb-2 mb-md-0">
+          <input type="text" class="form-control form-control-lg" name='code' placeholder="Code">
+          <input type="hidden" name="id" value={{Session}}>
+          <input type="hidden" name="cat" value={{catuser}}>
+        </div>
+        <div class="col-12 col-md-3">
+          <button type="submit" class="btn btn-block btn-lg btn-primary">Envoyer</button>
+        </div>
+      </div>
+    </form>
+  
+<br>
+
+<a href="?page=contact" id="linkcontact">Je n'ai pas accès à mon QRCODE (contactez l'assistance) </a>
+
+</div>
+  
+{% endblock %}
