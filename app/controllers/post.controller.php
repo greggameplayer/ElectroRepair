@@ -17,7 +17,7 @@ function getPostController(){
     if(isset($_SESSION["id"])){
         if(isset($_GET['action']) and $_GET['action'] =="send") {
             
-            sendAnnonce($_POST['title'],$_POST['detail'],$_POST['cat'],$_SESSION['id'],$_POST['img1']);
+            sendAnnonce($_POST['title'],$_POST['detail'],$_POST['cat'],$_SESSION['id'],$_POST['img1'],$_POST['intervalstart'],$_POST['intervalend']);
             echo $twig->render('post.html', [
                 "Session" => $_SESSION["id"],
                 "categorie" => $categorie,

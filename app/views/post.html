@@ -36,7 +36,15 @@ TODO VALUE AUTO => SELECT
         <h4>Photo (lien de l'image uniquement) (Ne pas toucher par défault)</h4>
         <input type="text" name="img1" id="formpost" value="https://www.autronix.fr/_media/img/large/2-electronique-haute-resolution.jpg">
         <br>
-          <button type="submit" class="btn btn-primary" id="Post">Poster son message </button>
+        <p>
+            <h4>Entrez un intervalle de prix:</h4>
+            <input type="hidden" id="intervalstart" name="intervalstart">
+            <input type="hidden" id="intervalend" name="intervalend">
+            <input type="text" id="amount" name="interval" readonly style="border:0; color:#f61f1f; font-weight:bold;">
+        </p>
+        <div id="slider-range"></div>
+        <br>
+          <button type="submit" class="btn btn-primary" id="Post">Poster son annonce </button>
     </form>
 </div>
 

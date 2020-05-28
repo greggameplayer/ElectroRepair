@@ -1,30 +1,42 @@
 <link rel="stylesheet" href="CSS/annonce.css"/>
 
 <div id="maincontainerannounce">
-<div class="container">
-    <div style="text-align:center">
-      <h2>{{annonce.Titre}}</h2>
-    </div>
-    <div class="row">
-        <img id="bonneAnnonceImg" src="{{annonce.IMAGE1}}" height="300"><br>
-    </div>
-    <p>{{annonce.Description}}</p>
-    <input type="text" id="inputprofid" value="{{ annonce.codeUser }}" hidden>
-    <input type="text" id="inputannonceid" value="{{ annonce.IDannonce }}" hidden>
-    {% if annonce.Moyenne != NULL %}
-        <div>Note moyenne: {{annonce.Moyenne}} <i class="fas fa-star"></i></div>
-    {% else %}
-        <div>Note moyenne: Non évalué</div>
-    {% endif %}
-
-    <div id="calendarmain">
-        {% include 'fullcalendar.html' %}
-    </div>
-    <div id="commentsmain">
-        {% include 'comments.html' %}
+    <div class="container">
+        <div style="text-align:center">
+            <h2>{{annonce.Titre}}</h2>
+        </div>
+        <div class="column">
+            <img id="bonneAnnonceImg" src="{{annonce.IMAGE1}}" height="300">
+        </div>
+        <br>
+        <h3>Description:</h3>
+        <div>{{annonce.Description}}</div>
+        <h5>{{annonce.intervalstart}} € - {{annonce.intervalend}} €</h5>
+        {% if annonce.Moyenne != NULL %}
+            <div>Note moyenne: {{annonce.Moyenne}} <i class="fas fa-star"></i></div>
+        {% else %}
+            <div><h6><u>Note moyenne:</u></h6> Non évalué</div>
+        {% endif %}
+        <br>
+        <h3>Description du réparateur:</h3>
+        <div><u>Date d'Inscription:</u> {{annonce.DateInscription|date('d/m/Y')}}</div>
+        <div><u>Nom:</u> {{annonce.Nom}}</div>
+        <div><u>Prenom:</u> {{annonce.Prenom}}</div>
+        <br>
+        <br>
+        <div id="map">
+            <h3>Emplacement:</h3>
+            <iframe width='100%' height='100%' id='mapcanvas' src='https://maps.google.com/maps?q={{annonce.Ville}} {{annonce.Adresse}}&Roadmap&z=14&ie=UTF8&iwloc=&output=embed' frameborder='0' scrolling='yes' marginheight='0' marginwidth='0'></iframe>
+        </div>
+        <br>
+        <br>
+        <div id="calendarmain">
+            {% include 'fullcalendar.html' %}
+        </div>
+        <div id="commentsmain">
+            {% include 'comments.html' %}
+        </div>
     </div>
 </div>
-</div>
-
-
-
+<input type="text" id="inputprofid" value="{{ annonce.codeUser }}" hidden>
+<input type="text" id="inputannonceid" value="{{ annonce.IDannonce }}" hidden>
