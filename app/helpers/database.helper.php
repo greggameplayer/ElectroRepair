@@ -11,7 +11,6 @@ define("HOST_SHARED", "epsi.nathanlemaitre.fr:3306");
 define("DB_NAME_SHARED", "electrorepairSharedDB");
 define("USER_SHARED", $_ENV['SHARED_DB_USER']);
 define("PASSWORD_SHARED", $_ENV['SHARED_DB_PASS']);
-use Dotenv\Dotenv;
 use PDO;
 use PDOException;
 function getDatabaseConnection()
