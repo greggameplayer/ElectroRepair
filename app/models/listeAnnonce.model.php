@@ -3,7 +3,7 @@ namespace Models;
 use function Helpers\getDatabaseConnection;
 
 function FiltreAnnonce(){
-    $qFiltreAnnonce = getDatabaseConnection()->prepare("SELECT annonce.IDannonce, Titre, IMAGE1, IMAGE2, IMAGE3, Description, NOMCat, DateInscription, Nom, Prenom, CP, Ville, Adresse, ROUND(AVG(Note), 1) AS 'Moyenne' FROM categorieannonce, users, annonce LEFT JOIN comments ON annonce.IDannonce = comments.IDannonce WHERE categorieannonce.NomCat = :filtre AND annonce.CodeCat = categorieannonce.IDCat AND annonce.codeUser = users.IDuser GROUP BY annonce.IDannonce");
+    $qFiltreAnnonce = getDatabaseConnection()->prepare("SELECT annonce.IDannonce, Titre, IMAGE1, IMAGE2, IMAGE3, Description, NOMCat, DateInscription, Nom, Prenom, CP, Ville, Adresse, codeUser, ROUND(AVG(Note), 1) AS 'Moyenne' FROM categorieannonce, users, annonce LEFT JOIN comments ON annonce.IDannonce = comments.IDannonce WHERE categorieannonce.NomCat = :filtre AND annonce.CodeCat = categorieannonce.IDCat AND annonce.codeUser = users.IDuser GROUP BY annonce.IDannonce");
     switch ($_POST["gendre2"]){
         case 'telephoneNeDemarrePas':
         case 'telephoneNeChargePas':

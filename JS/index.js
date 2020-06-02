@@ -7,6 +7,9 @@ $("document").ready(function(){
     $("#myaccountbt").on("click", onClickMyAccount);
     $("#discussbt").on("click", onClickDiscussBt);
     $("#accordiondiscussion .card .card-header .mb-0 button").on("click", onClickDiscussAccordion);
+    $("#bellcontainerdropdown").on('shown.bs.dropdown', onShownBellDropdown);
+    $("#bellcontainerdropdown").on('hidden.bs.dropdown', onHiddenBellDropdown);
+    $(".notifsa").on('click', onClickNotifsA);
 });
 
 function onSubmitInscriptionForm(event){
@@ -43,6 +46,8 @@ function refreshDropdown(){
     $("#dropdownheader").off("click");
     $("#dropdownprofile").off("click");
     $("#navbarTogglerbt").off("click");
+    $("#bellicon").dropdown('toggle');
+    $("#bellicon").dropdown('toggle');
     $("#dropdownheader").on("click", function(){
        $("#DropdownMenu").toggle();
        $("#dropdownheader").toggleClass("active");
@@ -114,6 +119,40 @@ function onClickDeconnexion(_event){
     });
 }
 
+function onClickNotifsA(_event){
+    let notifId = parseInt((this.id).replace ( /[^\d.]/g, '' ));
+    let LinkTo = JSON.parse($("#notiflink" + notifId).val());
+
+    switch(LinkTo.type){
+        case "rdv":
+            $.post('./index.php', {page: 'notifsSeen', ids: JSON.parse($("#notiftab").val())}, function(results){
+                $("#notificationcontainer").html(results);
+                $.post('./index.php', {page: 'myaccount'}, function(results){
+                    $("body").html(results);
+                });
+            });
+            break;
+        case "comment":
+            $.post('./index.php', {page: 'notifsSeen', ids: JSON.parse($("#notiftab").val())}, function(results){
+                $("#notificationcontainer").html(results);
+                $.get('./index.php', {page: 'annonce', annonce: LinkTo.IDannonce}, function(results){
+                    $("body").html(results);
+                    reloadCalendar();
+                });
+            });
+            break;
+        case "chat":
+            $.post('./index.php', {page: 'notifsSeen', ids: JSON.parse($("#notiftab").val())}, function(results){
+                $("#notificationcontainer").html(results);
+                $.post('./index.php', {page: 'chatroom', id: LinkTo.discId}, function(results){
+                    $("body").html(results);
+                });
+            });
+            break;
+    }
+
+}
+
 function onClickDiscussBt(_event){
     $.post("./index.php", {page: "discuss"}, function (results){
        $("body").html(results);
@@ -128,6 +167,20 @@ function onClickMyAccount(_event){
         refreshDropdown();
         document.title = "Mon compte / ElectroRepair";
     });
+}
+
+function onShownBellDropdown(_event){
+    if ($("#notifnb").val() != 0){
+        $("#bellicon").html("<i class=\"far fa-bell\"></i>");
+    }
+}
+
+function onHiddenBellDropdown(_event){
+    if ($("#notifnb").val() != 0){
+        $.post('./index.php', {page: 'notifsSeen', ids: JSON.parse($("#notiftab").val())}, function(results){
+            $("#notificationcontainer").html(results);
+        });
+    }
 }
 
 

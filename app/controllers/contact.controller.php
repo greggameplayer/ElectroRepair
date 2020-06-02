@@ -5,6 +5,7 @@ use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
 use Twig\Error\SyntaxError;
 use function Helpers\getRenderer;
+use function Models\getAllNotifs;
 use function Models\getAnnonce;
 use function Models\getGoodAnnonce;
 use function Models\FiltreAnnonce;
@@ -12,7 +13,7 @@ use function Models\FiltreAnnonce;
 function getContactController(){
     if(isset($_SESSION["id"])){
         $twig = getRenderer();
-        echo $twig->render('contact.html', ["Session" => $_SESSION["id"], "Group" => $_SESSION["group"]]);
+        echo $twig->render('contact.html', ["Session" => $_SESSION["id"], "Group" => $_SESSION["group"], "Notifs" => getAllNotifs($_SESSION['id'])]);
     }else {
         $twig = getRenderer();
         echo $twig->render('contact.html');
@@ -35,11 +36,11 @@ function sendMail(){
         } catch (Exception $e) {
             echo 'Caught exception: '. $e->getMessage() ."\n";
         }
-    
+
     }
     if(isset($_SESSION["id"])){
         $twig = getRenderer();
-        echo $twig->render('homepage.html', ["Session" => $_SESSION["id"], "Group" => $_SESSION["group"]]);
+        echo $twig->render('homepage.html', ["Session" => $_SESSION["id"], "Group" => $_SESSION["group"], "Notifs" => getAllNotifs($_SESSION['id'])]);
     }else {
         $twig = getRenderer();
         echo $twig->render('homepage.html');
@@ -49,7 +50,7 @@ function sendMail(){
 function getAproposController(){
     if(isset($_SESSION["id"])) {
         $twig = getRenderer();
-        echo $twig->render('aPropos.html', ["Session" => $_SESSION["id"], "Group" => $_SESSION["group"]]);
+        echo $twig->render('aPropos.html', ["Session" => $_SESSION["id"], "Group" => $_SESSION["group"], "Notifs" => getAllNotifs($_SESSION['id'])]);
     }else{
         $twig = getRenderer();
         echo $twig->render('aPropos.html');
@@ -59,7 +60,7 @@ function getAproposController(){
 function getCGUController(){
     if(isset($_SESSION["id"])) {
         $twig = getRenderer();
-        echo $twig->render('CGU.html', ["Session" => $_SESSION["id"], "Group" => $_SESSION["group"]]);
+        echo $twig->render('CGU.html', ["Session" => $_SESSION["id"], "Group" => $_SESSION["group"], "Notifs" => getAllNotifs($_SESSION['id'])]);
     }else{
         $twig = getRenderer();
         echo $twig->render('CGU.html');
@@ -73,7 +74,8 @@ function getResultatController(){
         echo getRenderer()->render('resultat_recherche.html',[
             "AllAnnonce" => getAnnonce($recherche),
             "Session" => $_SESSION["id"],
-            "Group" => $_SESSION["group"]
+            "Group" => $_SESSION["group"],
+            "Notifs" => getAllNotifs($_SESSION['id'])
         ]);
     }else {
         echo getRenderer()->render('resultat_recherche.html',[
@@ -91,7 +93,8 @@ function getAnnonceController($value=0){
             "Myannonce" => getGoodAnnonce($value),
             "Session" => $_SESSION["id"],
             "Group" => $_SESSION["group"],
-            "Comments" => \Models\getComments($value)
+            "Comments" => \Models\getComments($value),
+            "Notifs" => getAllNotifs($_SESSION['id'])
         ]);
     }else {
         getHomepageController();
@@ -105,7 +108,8 @@ function getResultatQuestionnaireController(){
         echo getRenderer()->render('resultat_recherche.html', [
             "AllAnnonce" => FiltreAnnonce(),
             "Session" => $_SESSION["id"],
-            "Group" => $_SESSION["group"]
+            "Group" => $_SESSION["group"],
+            "Notifs" => getAllNotifs($_SESSION['id'])
         ]);
     }else{
         echo getRenderer()->render('resultat_recherche.html', [

@@ -2,7 +2,7 @@
 namespace Controllers;
 
 use function Helpers\getRenderer;
-
+use function Models\getAllNotifs;
 
 
 function getMainController(){
@@ -84,12 +84,17 @@ function getMainController(){
                 \Models\AddComment();
                 break;
             case "sendMessage":
+                if (\Models\getChatPresence($_POST['Receiver']) == 0 && \Models\getChatID($_POST['Receiver']) != $_POST['IdDiscussion']){
+                    \Models\addNotif($_POST['Receiver'], "Vous avez un nouveau message", "{\"type\": \"chat\", \"discId\": \"" . $_POST["IdDiscussion"] . "\"}");
+                }
                 echo \Models\saveMessage();
+                break;
+            case "notifsSeen":
+                \Models\setSeenNotifs($_POST['ids']);
+                echo getRenderer()->render('notifications.html', ["Notifs" => getAllNotifs($_SESSION['id'])]);
                 break;
         }
 
     }else
         getHomepageController();
-
-
 }
