@@ -4,6 +4,7 @@ use Google_Service_Calendar_AclRule;
 use Google_Service_Calendar_AclRuleScope;
 use Google_Service_Calendar_Calendar;
 use function Helpers\getDatabaseConnection;
+use function Helpers\getSharedDatabaseConnection;
 
 function setUser($Email, $Password, $Prenom, $Nom, $Adresse, $CodePostal, $Ville, $Codecat){
     $token= kodex_random_string();
@@ -48,7 +49,12 @@ function setUser($Email, $Password, $Prenom, $Nom, $Adresse, $CodePostal, $Ville
                 "calendar" => $createdCalendar->getId(),
                 "token" => $token
             ]);
+            $qSharedInscription = getSharedDatabaseConnection()->prepare("INSERT INTO users(IDuser) VALUES(:id)");
+            $qSharedInscription->execute([
+               "id" => getDatabaseConnection()->lastInsertId()
+            ]);
             $qinscription->closeCursor();
+            $qSharedInscription->closeCursor();
         $emailconfirm = new \SendGrid\Mail\Mail();
         $emailconfirm->setFrom("contact@electrorepair.com", "Electro Repair");
         $emailconfirm->setSubject("Electro Repair | Confirmation création votre compte");

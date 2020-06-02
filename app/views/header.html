@@ -9,7 +9,7 @@
                 <li class="nav-item text-center">
                     <a class="nav-link text-light" href="index.php" id="home"><i class="fas fa-home"></i> Accueil</a>
                 </li>
-                
+
                 {% if Session is defined %}
                 {% if Group == 1 %}
                 <li class="nav-item text-center">
@@ -76,6 +76,11 @@
                 </li>
                 {% endif %}
             </ul>
+            {% if Notifs is defined %}
+                <div id="notificationcontainer">
+                    {% include 'notifications.html' %}
+                </div>
+            {% endif %}
         </div>
     </nav>
 </header>

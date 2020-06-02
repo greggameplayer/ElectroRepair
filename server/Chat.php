@@ -33,7 +33,10 @@ class Chat implements MessageComponentInterface {
         $data = json_decode($msg, true);
         switch ($data['command']) {
             case "subscribe":
-                $this->subscriptions[$from->resourceId] = $data['channel'];
+                $this->subscriptions[$from->resourceId] = [
+                    "channel" => $data['channel'],
+                    "realUserId" => $data['realUserId']
+                    ];
                 break;
             case "message":
                 $user = \Models\getUserById($data['youUserId']);
@@ -42,10 +45,10 @@ class Chat implements MessageComponentInterface {
                 $data['to'] = $oth[0]['Prenom'] . ' ' . $oth[0]['Nom'];
                 $data['dt'] = date("d/m/Y H:i:s");
 
-                if (isset($this->subscriptions[$from->resourceId])) {
-                    $target = $this->subscriptions[$from->resourceId];
-                    foreach ($this->subscriptions as $id=>$channel) {
-                        if ($channel == $target && $id != $from->resourceId) {
+                if (isset($this->subscriptions[$from->resourceId]['channel'])) {
+                    $target = $this->subscriptions[$from->resourceId]['channel'];
+                    foreach ($this->subscriptions as $id=>$val) {
+                        if ($val['channel'] == $target && $id != $from->resourceId) {
                             $this->users[$id]->send(json_encode($data));
                         }
                     }
