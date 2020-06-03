@@ -2,10 +2,10 @@
 namespace Helpers;
 $dotenv = new \Symfony\Component\Dotenv\Dotenv();
 $dotenv->load(__DIR__.'/../../db.env');
-define("HOST", $_ENV['DB_HOST']);
-define("DB_NAME", $_ENV['DB_NAME']);
-define("USER", $_ENV['DB_USER']);
-define("PASSWORD", $_ENV['DB_PASS']);
+define("HOST", $_ENV['LOCAL_DB_HOST']);
+define("DB_NAME", $_ENV['LOCAL_DB_NAME']);
+define("USER", $_ENV['LOCAL_DB_USER']);
+define("PASSWORD", $_ENV['LOCAL_DB_PASS']);
 
 define("HOST_SHARED", "epsi.nathanlemaitre.fr:3306");
 define("DB_NAME_SHARED", "electrorepairSharedDB");

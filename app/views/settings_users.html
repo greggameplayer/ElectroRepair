@@ -1,0 +1,39 @@
+{% extends 'layout.html' %}
+{% block title %}Paramètre de compte {% endblock %}
+{% block body %}
+<html>
+  <head>
+    <script src="JS/settings.js" defer></script>
+    <link rel="stylesheet" href="CSS/settings.css">
+  </head>
+
+</html>
+
+
+<h1>
+    Paramètre de votre compte
+</h1>
+<br>
+<h2>
+  Photo de profil !
+</h2>
+<form method="post" action="?page=settings&action=upload" enctype="multipart/form-data"> 
+  <input type="hidden" name="MAX_FILE_SIZE" value="2097152"> <input type="file" name="nom_du_fichier"> 
+  <input type="submit" value="Envoyer"> 
+</form>
+<h2>
+  QR CODE
+</h2>
+<div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
+
+      <div class="form-row">
+        <div class="col-12 col-md-3">
+          <button type="button" class="btn btn-block btn-lg btn-primary" id="qrcodebutton">Voir mon QR code </button>
+        </div>
+      </div>
+  </div>
+  <div id="qrcodediv">
+    <iframe src="https://www.authenticatorapi.com/pair.aspx?AppName=ElectroRepair&AppInfo=Test&SecretCode={{token0}}" frameborder="none" width="500" height="500" sandbox="allow-pointer-lock"></iframe>
+  </div>
+
+{% endblock %}
