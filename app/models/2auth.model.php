@@ -24,4 +24,13 @@ function get2auth($iduser){
     return $query->fetch();
 }
 
+function isFirst($iduser){
+    $bdd = getDatabaseConnection();
+    $query=$bdd->prepare("SELECT 2faUsed FROM users WHERE IDuser=:iduser");
+    $query->execute([
+        "iduser" => $iduser
+    ]);
+    return $query->fetch()[0];
+}
+
 ?>

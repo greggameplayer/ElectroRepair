@@ -56,5 +56,17 @@ function AddComment(){
     ]);
     $qAddComment->closeCursor();
 
+    addNotif(getUserIdByAnnonceId($_POST["IDannonce"])[0]['codeUser'], "Vous avez reçu un nouveau commentaire", "{\"type\": \"comment\", \"IDannonce\": \"" . $_POST["IDannonce"] . "\"}");
+
     \Controllers\getAnnonceController($_POST["IDannonce"]);
+}
+
+function getUserIdByAnnonceId($id){
+    $qGetUserID = getDatabaseConnection()->prepare("SELECT codeUser FROM annonce WHERE IDannonce = :idannonce");
+    $qGetUserID->execute([
+       "idannonce" =>  $id
+    ]);
+    $result = $qGetUserID->fetchAll();
+    $qGetUserID->closeCursor();
+    return $result;
 }

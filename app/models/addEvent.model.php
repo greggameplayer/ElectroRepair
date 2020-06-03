@@ -63,5 +63,7 @@ function addCalendarEvent($start, $finish, $date, $idPro){
     ]);
 
     $qAddDiscussion->closeCursor();
+
+    addNotif($idPro, "Vous avez un nouveau rendez-vous", "{\"type\": \"rdv\"}");
     return "le rendez-vous a été correctement ajouté";
 }

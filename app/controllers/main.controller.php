@@ -2,63 +2,60 @@
 namespace Controllers;
 
 use function Helpers\getRenderer;
+use function Models\getAllNotifs;
 
 
-
-function getMainController(){
-    if(isset($_GET['page'])) {
-        switch($_GET['page']){
+function getMainController()
+{
+    if (isset($_GET['page'])) {
+        switch ($_GET['page']) {
             case "homepage" :
                 getHomepageController();
-            break;
+                break;
             case "post":
                 getPostController();
-            break;
+                break;
             case "contact":
                 getContactController();
-            break;
+                break;
             case "mail":
                 sendMail();
-            break;
+                break;
             case "aPropos":
                 getAproposController();
-            break;
+                break;
             case 'CGU':
                 getCGUController();
-            break;
+                break;
             case 'resultat_recherche':
                 getResultatController();
-            break;
+                break;
             case 'questionnaire':
                 getQuestionnaireController();
-            break;
+                break;
             case 'inscription':
                 getInscriptionController();
-            break;
+                break;
             case 'annonce':
                 getAnnonceController();
-            break;
+                break;
             case 'annonceQuestionnaire':
                 getResultatQuestionnaireController();
-            break;
+                break;
             case 'confirmation':
                 \Models\confirmation();
-            break;
+                break;
             case '2auth':
                 get2authController($_POST['id'],$_POST['cat']);
             break;
-            case '2authtest':
-                get2authtestController();
-            break; 
             case 'settings':
                 getSettingsUsersController();
-            break;
-            
+                break;
             default:
                 getHomepageController();
-            break;
-    }
-    }else if(isset($_POST["page"])) {
+                break;
+        }
+    } else if (isset($_POST["page"])) {
         switch ($_POST["page"]) {
             case "inscription.model":
                 \Models\setUser($_POST["Email"], $_POST["Password"], $_POST["Prenom"], $_POST["Nom"], $_POST["Adresse"], $_POST["CodePostal"], $_POST["Ville"], $_POST["Codecat"]);
@@ -94,12 +91,18 @@ function getMainController(){
                 \Models\AddComment();
                 break;
             case "sendMessage":
+                if (\Models\getChatPresence($_POST['Receiver']) == 0 && \Models\getChatID($_POST['Receiver']) != $_POST['IdDiscussion']) {
+                    \Models\addNotif($_POST['Receiver'], "Vous avez un nouveau message", "{\"type\": \"chat\", \"discId\": \"" . $_POST["IdDiscussion"] . "\"}");
+                }
                 echo \Models\saveMessage();
+                break;
+            case "notifsSeen":
+                \Models\setSeenNotifs($_POST['ids']);
+                echo getRenderer()->render('notifications.html', ["Notifs" => getAllNotifs($_SESSION['id'])]);
                 break;
         }
 
-    }else
-    getHomepageController();
-
-
+    } else {
+        getHomepageController();
+    }
 }

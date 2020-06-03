@@ -4,11 +4,8 @@ namespace Controllers;
 
 use function Helpers\getRenderer;
 use function Models\get2auth;
-
-function testController() {
-    $twig=getRenderer();
-    echo $twig->render('2auth.html');
-}
+use function Models\isFirst;
+ 
 function get2authController($iduser,$catuser){
     if(isset($_GET['action'])){
         switch($_GET['action']){
@@ -23,12 +20,11 @@ function get2authController($iduser,$catuser){
                     'content' => http_build_query($data)
         )
     );
+    
                 $context  = stream_context_create($options);
                 $response = file_get_contents($url, false, $context);
-                
+
                 if($response != "True"){
-                    //session_destroy();
-                    //TODO , Faire une page d'erreur 
                     $twig = getRenderer();
                     echo $twig->render('2auth.html', [
                         "token0" => get2auth($iduser)[0],
@@ -39,13 +35,13 @@ function get2authController($iduser,$catuser){
 
                 }
                 else {
-                    
+
                 $_SESSION['id']=$iduser;
                 $_SESSION['group']=$catuser;
                 getHomepageController();
-           
-            
-            
+
+
+
                 }
 
             break;
@@ -55,22 +51,33 @@ function get2authController($iduser,$catuser){
     else
     {
         $twig = getRenderer();
-    if(isset($iduser)){
-        $token=get2auth($iduser);
-        
+        if(isset($iduser)){
+            $token=get2auth($iduser);
 
+        }
+        else{
+            getHomepageController();
+        }
+        
+        print_r(isFirst($iduser));
+        if(isFirst($iduser)==0){
+            echo $twig->render('2auth.html', [
+                "token0" => $token[0],
+                "Session" => $iduser,
+                "catuser" => $catuser,
+                "first" => 1
+            ]);
+            }
+        else{
+            echo $twig->render('2auth.html', [
+                "token0" => $token[0],
+                "Session" => $iduser,
+                "catuser" => $catuser
+            ]);
+        }
+           
     }
-    else{
-        getHomepageController();
-    }
-    
-    echo $twig->render('2auth.html', [
-        "token0" => $token[0],
-        "Session" => $iduser,
-        "catuser" => $catuser
-    ]);
-    }
-    
+
 }
 
 ?>

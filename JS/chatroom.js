@@ -4,7 +4,7 @@ $(document).ready(function(){
    conn = new WebSocket('ws://epsi.nathanlemaitre.fr:7070');
    conn.onopen = function(e){
        console.log('connexion établi');
-       subscribe($("#channelIdchatroom").val());
+       subscribe($("#channelIdchatroom").val(), $("#youIdchatroom").val());
    };
 
    conn.onmessage = function(e){
@@ -90,8 +90,8 @@ function twoDigit(n){
     return n > 9 ? "" + n: "0" + n;
 }
 
-function subscribe(channel) {
-    conn.send(JSON.stringify({command: "subscribe", channel: channel}));
+function subscribe(channel, id) {
+    conn.send(JSON.stringify({command: "subscribe", channel: channel, realUserId: id}));
 }
 
 $(".mytext").on("keyup", function(e){
@@ -106,7 +106,7 @@ $(".mytext").on("keyup", function(e){
         if (text !== ""){
             insertChat("me", text, convertToFrenchFormat(new Date()));
             conn.send(JSON.stringify(data));
-            $.post("./index.php", {page: "sendMessage", IdDiscussion: $("#channelIdchatroom").val(), Content: text, Sender: $("#youIdchatroom").val()}, function (results){
+            $.post("./index.php", {page: "sendMessage", IdDiscussion: $("#channelIdchatroom").val(), Content: text, Sender: $("#youIdchatroom").val(), Receiver: $("#othIdchatroom").val()}, function (results){
 
             });
             $(this).val('');

@@ -76,6 +76,11 @@
                 </li>
                 {% endif %}
             </ul>
+            {% if Notifs is defined %}
+                <div id="notificationcontainer">
+                    {% include 'notifications.html' %}
+                </div>
+            {% endif %}
         </div>
     </nav>
 </header>

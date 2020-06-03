@@ -2,6 +2,7 @@
 namespace Controllers;
 
 use function Helpers\getRenderer;
+use function Models\getAllNotifs;
 use function Models\sendAnnonce;
 use function Models\getCategorie;
 
@@ -15,20 +16,17 @@ function getPostController(){
     $twig = getRenderer();
     if(isset($_SESSION["id"])){
         if(isset($_GET['action']) and $_GET['action'] =="send") {
-            print_r($_FILES);
             $t=bin2hex(random_bytes(6));
-            
             
             move_uploaded_file($_FILES['nom_du_fichier']['tmp_name'], $repo.$t.".png"); 
             $linkimg=$repo.$t.".png";
-            var_dump($linkimg);
-            
             
             sendAnnonce($_POST['title'],$_POST['detail'],$_POST['cat'],$_SESSION['id'],$linkimg);
             echo $twig->render('post.html', [
                 "Session" => $_SESSION["id"],
                 "categorie" => $categorie,
-                "Group" => $_SESSION["group"]
+                "Group" => $_SESSION["group"],
+                "Notifs" => getAllNotifs($_SESSION['id'])
             ]);
         }
         else
@@ -36,14 +34,15 @@ function getPostController(){
             echo $twig->render('post.html', [
                 "Session" => $_SESSION["id"],
                 "categorie" => $categorie,
-                "Group" => $_SESSION["group"]
+                "Group" => $_SESSION["group"],
+                "Notifs" => getAllNotifs($_SESSION['id'])
             ]);
         }
     }else {
         getHomepageController();
-    
+
     }
-    
+
 }
 
 
