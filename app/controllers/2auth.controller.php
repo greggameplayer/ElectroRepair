@@ -25,10 +25,8 @@ function get2authController($iduser,$catuser){
     );
                 $context  = stream_context_create($options);
                 $response = file_get_contents($url, false, $context);
-                
+
                 if($response != "True"){
-                    //session_destroy();
-                    //TODO , Faire une page d'erreur 
                     $twig = getRenderer();
                     echo $twig->render('2auth.html', [
                         "token0" => get2auth($iduser)[0],
@@ -39,13 +37,13 @@ function get2authController($iduser,$catuser){
 
                 }
                 else {
-                    
+
                 $_SESSION['id']=$iduser;
                 $_SESSION['group']=$catuser;
                 getHomepageController();
-           
-            
-            
+
+
+
                 }
 
             break;
@@ -57,20 +55,20 @@ function get2authController($iduser,$catuser){
         $twig = getRenderer();
     if(isset($iduser)){
         $token=get2auth($iduser);
-        
+
 
     }
     else{
         getHomepageController();
     }
-    
+
     echo $twig->render('2auth.html', [
         "token0" => $token[0],
         "Session" => $iduser,
         "catuser" => $catuser
     ]);
     }
-    
+
 }
 
 ?>
