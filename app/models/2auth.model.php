@@ -30,7 +30,17 @@ function isFirst($iduser){
     $query->execute([
         "iduser" => $iduser
     ]);
-    return $query->fetch()[0];
+    $result= $query->fetch()[0];
+    if($result==0){
+        $query=$bdd->prepare("UPDATE users set 2faUsed=:un WHERE IDuser=:iduser");
+        $query->execute([
+        "iduser" => $iduser,
+        "un" => 1
+
+    ]);
+
+    }
+
 }
 
 ?>

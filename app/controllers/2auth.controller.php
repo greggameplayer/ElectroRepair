@@ -59,7 +59,6 @@ function get2authController($iduser,$catuser){
             getHomepageController();
         }
         
-        print_r(isFirst($iduser));
         if(isFirst($iduser)==0){
             echo $twig->render('2auth.html', [
                 "token0" => $token[0],
