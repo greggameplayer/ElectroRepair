@@ -12,7 +12,7 @@ function menu()
           </div>');
             break;
     }
-};
+}
 
 function effacertout()
 {
