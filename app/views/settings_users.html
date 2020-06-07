@@ -9,31 +9,128 @@
 
 </html>
 
-
-<h1>
-    Paramètre de votre compte
-</h1>
-<br>
-<h2>
-  Photo de profil !
-</h2>
-<form method="post" action="?page=settings&action=upload" enctype="multipart/form-data"> 
-  <input type="hidden" name="MAX_FILE_SIZE" value="2097152"> <input type="file" name="nom_du_fichier"> 
-  <input type="submit" value="Envoyer"> 
-</form>
-<h2>
-  QR CODE
-</h2>
-<div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
-
-      <div class="form-row">
-        <div class="col-12 col-md-3">
-          <button type="button" class="btn btn-block btn-lg btn-primary" id="qrcodebutton">Voir mon QR code </button>
+<div id="maincontainersettings">
+  <h1 class="text-center">
+    Paramètres de votre compte
+  </h1>
+  <div id="rowoptionssettingscontainer">
+    <div class="card" id="profilepicturecontainer" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title">
+          Photo de profil !
+        </h5>
+        <div class="card-text">
+          <form method="post" action="?page=settings&action=upload" enctype="multipart/form-data">
+            <input type="hidden" name="MAX_FILE_SIZE" value="2097152">
+            <div class="container p-y-1">
+              <div class="row m-b-1">
+                <div class="form-group inputDnD">
+                  <label class="sr-only" for="inputFile">File Upload</label>
+                  <input type="file" class="form-control-file text-primary font-weight-bold" id="inputFile" name="nom_du_fichier" accept="image/*" onchange="readUrl(this)" data-title="Déposer une image ou cliquer">
+                </div>
+              </div>
+            </div>
+            <input type="submit" value="Envoyer" class="btn btn-primary">
+          </form>
         </div>
       </div>
-  </div>
-  <div id="qrcodediv">
-    <iframe src="https://www.authenticatorapi.com/pair.aspx?AppName=ElectroRepair&AppInfo=Test&SecretCode={{token0}}" frameborder="none" width="500" height="500" sandbox="allow-pointer-lock"></iframe>
-  </div>
+    </div>
+    <div class="card" id="qrcodecontainer" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title">
+          QR CODE
+        </h5>
+        <div class="card-text">
+          <div class="form-row">
+            <button type="button" class="btn btn-block btn-lg btn-primary" id="qrcodebutton">Voir mon QR code </button>
+          </div>
+          <div id="qrcodediv">
+            <iframe src="https://www.authenticatorapi.com/pair.aspx?AppName=ElectroRepair&AppInfo=Test&SecretCode={{token0}}" frameborder="none" marginwidth="0" marginheight="0" hspace="0" vspace="0" style="width: 120%; height: 115%;" scrolling="no" sandbox="allow-pointer-lock"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% if Group is defined and Group == 1 %}
+    <div class="card" id="planningprocontainer" style="width: 22rem;">
+      <div class="card-body">
+        <h5 class="card-title">
+          Plages horaires de disponibilité
+        </h5>
+        <div class="card-text">
+          <div class="table-responsive">
+          <table class="table">
+            <tbody>
+            <tr>
+              <th scope="row" class="table-dark">Lundi</th>
+              <td id="lundirange">
+                <input type="text" id="amountlundi" class="amounts text-primary" readonly style="border:0; font-weight:bold;">
+                <div id="slider-rangelundi" class="slider-range">
 
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row" class="table-dark">Mardi</th>
+              <td id="mardirange">
+                <input type="text" id="amountmardi" class="amounts text-primary" readonly style="border:0; font-weight:bold;">
+                <div id="slider-rangemardi" class="slider-range">
+
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row" class="table-dark">Mercredi</th>
+              <td id="mercredirange">
+                <input type="text" id="amountmercredi" class="amounts text-primary" readonly style="border:0; font-weight:bold;">
+                <div id="slider-rangemercredi" class="slider-range">
+
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row" class="table-dark">Jeudi</th>
+              <td id="jeudirange">
+                <input type="text" id="amountjeudi" class="amounts text-primary" readonly style="border:0; font-weight:bold;">
+                <div id="slider-rangejeudi" class="slider-range">
+
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row" class="table-dark">Vendredi</th>
+              <td id="vendredirange">
+                <input type="text" id="amountvendredi" class="amounts text-primary" readonly style="border:0; font-weight:bold;">
+                <div id="slider-rangevendredi" class="slider-range">
+
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row" class="table-dark">Samedi</th>
+              <td id="samedirange">
+                <input type="text" id="amountsamedi" class="amounts text-primary" readonly style="border:0; font-weight:bold;">
+                <div id="slider-rangesamedi" class="slider-range">
+
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row" class="table-dark">Dimanche</th>
+              <td id="dimancherange">
+                <input type="text" id="amountdimanche" class="amounts text-primary" readonly style="border:0; font-weight:bold;">
+                <div id="slider-rangedimanche" class="slider-range">
+
+                </div>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+            <button id="submitHoraire" class="btn btn-primary text-center">Valider</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+</div>
 {% endblock %}
