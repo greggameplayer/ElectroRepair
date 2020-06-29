@@ -117,7 +117,7 @@ body {
   position: absolute;
   z-index: 2;
   border: solid black 1px;
-  border-radius: 0 17.5px 17.5px 17.5px;
+  border-radius: 0 17.5px 17.5px;
 }
 
 #calendarpopupcontrols

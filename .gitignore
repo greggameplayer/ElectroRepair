@@ -4,3 +4,7 @@ token.json
 credentials.json
 reCaptcha.json
 sendgrid.env
+/img/users/
+/img/annonce/
+
+db.env
