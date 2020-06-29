@@ -4,13 +4,27 @@
         <img src="{{annonce.IMAGE1}}" height="200">
       </div>
       <div class="column" id='test1'>
-        <h5 class="mt-0">{{annonce.Titre}}</h5>
+        <h5 class="mt-0">{{annonce.Titre}} :</h5>
+        <br>
+        <h6>{{annonce.intervalstart}} € - {{annonce.intervalend}} €</h6>
+        <br>
+        <div>{{annonce.Description}}</div>
+        <br>
         {% if annonce.Moyenne != NULL %}
-          <div>Note moyenne: {{annonce.Moyenne}} <i class="fas fa-star"></i></div>
+          <div><u>Note moyenne:</u> {{annonce.Moyenne}} <i class="fas fa-star"></i></div>
         {% else %}
-          <div>Note moyenne: Non évalué</div>
+          <div><u>Note moyenne:</u> Non évalué</div>
         {% endif %}
-        <p>{{annonce.Description}}</p>  
+        <br>
+        <h5>Description réparateur :</h5>
+        <br>
+        <div><u>Date d'Inscription:</u> {{annonce.DateInscription|date('d/m/Y')}}</div>
+        <div><u>Nom:</u> {{annonce.Nom}}</div>
+        <div><u>Prénom:</u> {{annonce.Prenom}}</div>
+        <div><u>Code Postal:</u> {{annonce.CP}}</div>
+        <div><u>Ville:</u> {{annonce.Ville}}</div>
+        <div><u>Adresse:</u> {{annonce.Adresse}}</div>
+        <br>
         <a href="?page=annonce&annonce={{annonce.IDannonce}}"><input type='button' value='Voir Plus'></a>
       </div>
     </div>

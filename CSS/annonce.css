@@ -86,8 +86,7 @@ body {
     img{
       padding-top: 0%;
       height:35vw;
-      margin-left: auto;
-      margin-right: auto;
+
     }
     div div a input{
       margin-left: 0%;
@@ -158,4 +157,9 @@ body {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+}
+
+#map
+{
+  height: 50vh;
 }

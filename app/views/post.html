@@ -38,9 +38,15 @@ TODO VALUE AUTO => SELECT
         <input type="file" name="annonce_image">
         
         <br>
+        <p>
+            <h4>Entrez un intervalle de prix:</h4>
+            <input type="hidden" id="intervalstart" name="intervalstart">
+            <input type="hidden" id="intervalend" name="intervalend">
+            <input type="text" id="amount" name="interval" readonly style="border:0; color:#f61f1f; font-weight:bold;">
+        </p>
+        <div id="slider-range"></div>
         <br>
-
-          <button type="submit" class="btn btn-primary" id="Post">Poster son message </button>
+          <button type="submit" class="btn btn-primary" id="Post">Poster son annonce </button>
     </form>
 </div>
 
